@@ -1,4 +1,4 @@
-import {CHANGE_INPUT_VALUE,DELETE_TODP_ITEM,ADD_TODD_ITEM} from './actionType'
+import {CHANGE_INPUT_VALUE,DELETE_TODP_ITEM,ADD_TODD_ITEM,INIT_LIST_ACTION} from './actionType'
 const defaultState = {
     inputValue:"",
     list:[]
@@ -11,14 +11,16 @@ export default (state = defaultState, action)=>{
         return newState
     } else if(action.type===ADD_TODD_ITEM) {
         const newState = JSON.parse(JSON.stringify(state))
-        console.log("add_todo_item")
         newState.list.push(newState.inputValue)
         newState.inputValue =''
         return newState
     } else if(action.type===DELETE_TODP_ITEM) {
         const newState = JSON.parse(JSON.stringify(state))
-        console.log("delete_todo_item")
         newState.list.splice(action.index,1)
+        return newState
+    } else if(action.type===INIT_LIST_ACTION) {
+        const newState = JSON.parse(JSON.stringify(state))
+        newState.list = action.data
         return newState
     }
    
